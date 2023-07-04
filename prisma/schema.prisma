@@ -11,149 +11,19 @@ datasource db {
 }
 
 model Post {
-  id                   Int                   @id @default(autoincrement())
-  createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
-  deletedAt            DateTime?
-  title                String
-  content              String
-  climbingType         ClimbingType
-  gymId                Int
-  gym                  Gym                   @relation(fields: [gymId], references: [id])
-  preferredDayAndTimes PreferredDayAndTime[]
-  experienceMonths     Int
-  belayMonths          Int
-  grade                String
-  replies              Reply[]
-  like                 PostLike[]
-  viewHistory          ViewHistory[]
-}
-
-model ViewHistory {
-  id     Int    @id @default(autoincrement())
-  userId String
-  postId Int
-  post   Post   @relation(fields: [postId], references: [id])
-}
-
-model PostLike {
-  id     Int    @id @default(autoincrement())
-  userId String
-  postId Int
-  post   Post   @relation(fields: [postId], references: [id])
-}
-
-model Gym {
-  id           Int          @id @default(autoincrement())
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  deletedAt    DateTime?
-  name         String
-  image        String?
-  climbingType ClimbingType
-  posts        Post[]
-  impPosts     GymImpPost[]
-  likes        GymLike[]
-}
-
-model GymLike {
-  id     Int    @id @default(autoincrement())
-  userId String
-  gymId  Int
-  gym    Gym    @relation(fields: [gymId], references: [id])
-}
-
-model GymImpPost {
-  id        Int              @id @default(autoincrement())
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  deletedAt DateTime?
-  userName  String
-  title     String
-  content   String
-  gymId     Int
-  gym       Gym              @relation(fields: [gymId], references: [id])
-  likes     GymImpPostLike[]
-}
-
-model GymImpPostLike {
-  id           Int         @id @default(autoincrement())
-  userId       String
-  gymImpPostId Int?
-  GymImpPost   GymImpPost? @relation(fields: [gymImpPostId], references: [id])
-}
-
-model PreferredDayAndTime {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  deletedAt  DateTime?
-  dayAndTime String    @db.VarChar(2)
-  postId     Int
-  post       Post      @relation(fields: [postId], references: [id])
-}
-
-model Reply {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  userName  String
   title     String
   content   String
-  postId    Int
-  post      Post      @relation(fields: [postId], references: [id])
+
+  gymId Int
+
+  experienceMonths Int
+  belayMonths      Int
+  grade            String
 }
-
-enum ClimbingType {
-  BOULDER
-  LEAD
-  BOTH
-}
-
-//この上気にしない
-
-model Tozanguthi {
-  id               Int       @id @default(autoincrement())
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  deletedAt        DateTime?
-  tozangutiName    String
-  uphillTime       Int?
-  downhillTime     Int?
-  uphillDistance   Int?
-  downhillDistance Int?
-  nigiyaka         Int?
-  view             Int?
-  toilet           String?
-  vendingMachin    String?
-  store            String?
-  mycar            String?
-  lastStopByCar    String?
-  entranceTime     Int?
-  transportation   String?
-  remark           String?
-}
-
-model Mountain {
-  id                Int       @id @default(autoincrement())
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  deletedAt         DateTime?
-  name              String
-  nameKana          String
-  postalCode        Int?
-  prefecture        String?
-  address1          String?
-  address2          String?
-  address3          String?
-  hyakumeizanStatus Boolean   @default(false)
-  MountainPeak      Int?
-  appealPoint       String?
-  description       String?
-}
-
-//この下気にしない
 
 generator typegraphql {
   provider            = "typegraphql-prisma"

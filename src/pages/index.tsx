@@ -1,9 +1,9 @@
 // next
+import { Button, Grid } from '@mui/material';
 import Head from 'next/head';
 // layouts
 import MainLayout from 'src/layouts/main';
 
-import HomeView from 'src/sections/_home/view/HomeView';
 // sections
 
 HomePage.getLayout = (page: React.ReactElement) => <MainLayout>{page}</MainLayout>;
@@ -12,10 +12,16 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>ジムイキタイ | Climb Bond</title>
+        <title>ジあああ</title>
       </Head>
-
-      <HomeView />
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Button>あああ</Button>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Button>いいい</Button>
+        </Grid>
+      </Grid>
     </>
   );
 }

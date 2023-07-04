@@ -13,9 +13,6 @@ import { AppType } from 'next/app';
 import createEmotionServer from '@emotion/server/create-instance';
 // utils
 import createEmotionCache from 'src/utils/createEmotionCache';
-// theme
-import palette from 'src/theme/palette';
-import { primaryFont } from 'src/theme/typography';
 //
 import { MyAppProps } from './_app';
 
@@ -32,7 +29,7 @@ const Favicon = () => (
 const Meta = () => (
   <>
     {/* PWA primary color */}
-    <meta name="theme-color" content={palette('light').primary.main} />
+    <meta name="theme-color" />
     <meta
       name="description"
       content="ジムイキタイ！クライマー同士をくっつけるClimb Bond！ ビレイパートナーの募集ややセッションできる仲間を増やしたり、ジムの情報を交換するWebサービスです。"
@@ -51,7 +48,7 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="ja" className={primaryFont.className}>
+    <Html lang="ja">
       <Head>
         <Favicon />
         <Meta />

@@ -40,12 +40,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-let graphqlUri;
-if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') {
-  graphqlUri = 'https://climbbond.com/api/graphql/';
-} else {
-  graphqlUri = 'http://localhost:8002/api/graphql/';
-}
+const graphqlUri = 'http://localhost:8002/api/graphql/';
 
 const httpLink = createHttpLink({
   uri: graphqlUri,

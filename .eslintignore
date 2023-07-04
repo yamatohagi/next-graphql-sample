@@ -1,0 +1,13 @@
+// .eslintignore
+**/node_modules/*
+**/out/*
+**/.next/*
+
+
+generated/
+gql.ts
+gql.tsx
+
+
+*.js
+*.cjs

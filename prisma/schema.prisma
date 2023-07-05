@@ -11,18 +11,34 @@ datasource db {
 }
 
 model Post {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int         @id @default(autoincrement())
   title     String
   content   String
+  PostLike  PostLike[]
+  PostReply PostReply[]
+}
 
-  gymId Int
+model PostLike {
+  id     Int    @id @default(autoincrement())
+  userId String
+  postId Int
+  post   Post   @relation(fields: [postId], references: [id])
+}
 
-  experienceMonths Int
-  belayMonths      Int
-  grade            String
+model PostReply {
+  id            Int             @id @default(autoincrement())
+  title         String
+  content       String
+  postId        Int
+  post          Post            @relation(fields: [postId], references: [id])
+  PostReplyLike PostReplyLike[]
+}
+
+model PostReplyLike {
+  id          Int       @id @default(autoincrement())
+  userId      String
+  postReplyId Int
+  PostReply   PostReply @relation(fields: [postReplyId], references: [id])
 }
 
 generator typegraphql {

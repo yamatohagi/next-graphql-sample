@@ -1,0 +1,18 @@
+{
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/app",
+  "postCreateCommand": "apk update && apk add git sudo bash",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+		"apollographql.vscode-apollo",
+		"dbaeumer.vscode-eslint",
+		"Prisma.prisma",
+		"yoavbls.pretty-ts-errors",
+		"MS-CEINTL.vscode-language-pack-ja",
+		"esbenp.prettier-vscode"
+	]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "climb-bond",
+  "name": "sample",
   "author": "yamatohagi",
   "version": "0.0.0",
   "description": "Next & TypeScript",
@@ -18,7 +18,11 @@
     "re-build": "rm -rf .next _static node_modules && yarn install && yarn build",
     "seed": "ts-node prisma/seed.ts",
     "generate-graphql-schema": "ts-node bin/generate-graphql-schema.ts",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "studio": "npx prisma studio",
+    "prisma": "npx prisma generate && npm run dev",
+    "db": "npx prisma generate && npx prisma migrate reset --preview-feature && npx prisma migrate dev --preview-feature && npm run seed",
+    "front-gen": " npm run generate-graphql-schema && npm run codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
@@ -29,6 +33,8 @@
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.6",
     "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@iconify/react": "^4.1.0",
     "@mui/material": "^5.11.15",
     "@mui/system": "^5.11.15",
